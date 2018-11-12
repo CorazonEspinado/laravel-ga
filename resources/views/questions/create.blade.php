@@ -15,14 +15,25 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="route('questions.store')" method="POST">
+                    <form action="{{route('questions.store')}}" method="POST">
+                        @csrf
                         <div class='form-group'>
                             <label for='question-title'>Question Title</label>
-                            <input type='text' name='title' id='question-title' class="form-control">
+                            <input type='text' name='title' id='question-title' class="form-control {{$errors->has('title')? 'is-invalid':''}}">
+                            @if($errors->has('title'))
+                            <div class='invalid-feedback'>
+                                <strong>{{$errors->first('title')}}</strong>
+                            </div>
+                            @endif
                         </div>
                          <div class='form-group'>
                             <label for='question-body'>Your question</label>
-                            <textarea name='body' id='question-body' class="form-control" rows="10"></textarea>
+                            <textarea name='body' id='question-body' class="form-control {{$errors->has('body')? 'is-invalid':''}}" rows="10"></textarea>
+                            @if($errors->has('body'))
+                            <div class='invalid-feedback'>
+                                <strong>{{$errors->first('body')}}</strong>
+                            </div>
+                            @endif
                         </div>
                         <div class="form-group">
                             <button type="submit" class='btn btn-outline-primary btn-lg'>OK!</button>
