@@ -57,7 +57,7 @@ class QuestionsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Question $question) {
-        //
+        return view ('questions.edit', compact($question));
     }
 
     /**
