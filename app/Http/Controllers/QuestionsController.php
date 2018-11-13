@@ -79,7 +79,8 @@ class QuestionsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Question $question) {
-        //
+        $question->delete();
+        return redirect()->route('questions.index')->with('success','Deleted');
     }
 
 }

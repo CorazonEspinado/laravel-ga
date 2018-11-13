@@ -11,8 +11,7 @@
 </div>
 <div class='form-group'>
     <label for='question-body'>Your question</label>
-    <textarea name='body' id='question-body' value="{{old('body')}}"
-              class="form-control {{$errors->has('body')? 'is-invalid':''}}" rows="10">{{$question->body}}</textarea>
+
     @if($errors->has('body'))
         <div class='invalid-feedback'>
             <strong>{{$errors->first('body')}}</strong>
