@@ -103,4 +103,5 @@ class QuestionsController extends Controller
         $question->delete();
         return redirect('/questions')->with('success', "Your question has been deleted.");
     }
+
 }
