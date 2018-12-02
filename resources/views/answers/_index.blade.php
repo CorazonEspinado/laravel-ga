@@ -8,6 +8,7 @@
                     <h2>{{$answersCount.' '.str_plural('Answer',$answersCount)}}</h2>
                 </div>
                 <hr>
+                @include('layouts._messages')
                 @foreach ($answers as $answer)
                     <div class="media">
                         <div class="d-flex flex-column vote-controls">
@@ -23,7 +24,7 @@
                             {!! $answer->body_html !!}
 
                             <div class="float-right">
-                                <span class="text-muted">Answered {{$question->created_date}}</span>
+                                <span class="text-muted">Answered {{$answer->created_date}}</span>
                                 <div class="media mt-2">
                                     <a href="{{$answer->user->url}}" class="pr-2">
                                         <img src="{{$answer->user->avatar}}">
