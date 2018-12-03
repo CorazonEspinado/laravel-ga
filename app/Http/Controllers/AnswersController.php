@@ -8,7 +8,7 @@ use App\Question;
 
 class AnswersController extends Controller
 {
-     public function store(Question $question, Request $request)
+    public function store(Question $question, Request $request)
     {
         $request->validate([
             'body' => 'required'
@@ -17,21 +17,26 @@ class AnswersController extends Controller
             'user_id' => \Auth::id()]);
         return back()->with('success', 'Comment submited');
     }
-      public function edit(Question $question,Answer $answer)
+
+    public function edit(Question $question, Answer $answer)
     {
         $this->authorize('update', $answer);
-        return view ('answers.edit', compact('question', 'answer'));
+        return view('answers.edit', compact('question', 'answer'));
     }
-    public function update(Request $request,Question $question, Answer $answer)
+
+    public function update(Request $request, Question $question, Answer $answer)
     {
         $this->authorize('update', $answer);
-       $answer->update($request->validate([
-          'body'=>'required',
-       ]));
+        $answer->update($request->validate([
+            'body' => 'required',
+        ]));
         return redirect()->route('questions.show', $question->slug)->with('success', 'Your answer has been updated');
     }
-    public function destroy(Answer $answer)
+
+    public function destroy(Question $question, Answer $answer)
     {
-        //
+        $this->authorize('delete', $answer);
+        $answer->delete();
+        return back()->with('success', 'Deleted!');
     }
 }
