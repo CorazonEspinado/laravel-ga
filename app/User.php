@@ -24,21 +24,25 @@ class User extends Authenticatable
     public function questions()
     {
         return $this->hasMany(Question::class);
-    }  
-    
+    }
+
     public function getUrlAttribute()
     {
-//         return route("questions.show", $this->id);
+        // return route("questions.show", $this->id);
         return '#';
     }
-    public function answers() {
+    public function answers()
+    {
         return $this->hasMany(Answer::class);
     }
     public function getAvatarAttribute()
     {
         $email = $this->email;
-        $size = 22;
-        return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "&s=" . $size;
-
+        $size = 32;
+        return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?s=" . $size;
+    }
+    public function favorites()
+    {
+        return $this->belongsToMany(Question::class, 'favorites')->withTimestamps(); //, 'author_id', 'question_id');
     }
 }
