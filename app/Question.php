@@ -79,4 +79,9 @@ class Question extends Model
         return $this->favorites->count();
     }
 
+    public function getExcerptAttribute()
+    {
+        return  str_limit(strip_tags($this->body_html), 250);
+    }
+
 }
