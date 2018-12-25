@@ -10472,10 +10472,6 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.roma {
-  background-color: red;
-}
-
 .counters {
   margin-right: 30px;
   font-size: 10px;
@@ -10552,5 +10548,14 @@ form.form-delete {
 
 .vote-controls a.vote-accepted {
   color: #28a745;
+}
+
+.post {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.post:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
