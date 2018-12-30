@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Question;
 
@@ -30,6 +31,12 @@ class AnswersController extends Controller
         $answer->update($request->validate([
             'body' => 'required',
         ]));
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Updated',
+                'body_html' => $answer->body_html
+            ]);
+        }
         return redirect()->route('questions.show', $question->slug)->with('success', 'Your answer has been updated');
     }
 
